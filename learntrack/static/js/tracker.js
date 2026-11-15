@@ -26,6 +26,7 @@
   var hiddenTotal = 0;
   var maxScroll = 0;
   var leaving = false;
+  var exitTracked = false;
 
   function clip(text, max) {
     text = String(text || '').replace(/\s+/g, ' ').trim();
@@ -51,15 +52,15 @@
   function flush(leaving) {
     clearTimeout(timer);
     timer = null;
-    if (!queue.length) return;
+    if (!queue.length) return Promise.resolve();
     var batch = queue.splice(0, queue.length);
     var payload = JSON.stringify({ events: batch, csrf_token: csrf });
     // While the page is unloading a normal request may be cancelled, so use a beacon.
     if (leaving === true && navigator.sendBeacon) {
       navigator.sendBeacon('/api/events', new Blob([payload], { type: 'application/json' }));
-      return;
+      return Promise.resolve();
     }
-    fetch('/api/events', {
+    return fetch('/api/events', {
       method: 'POST',
       credentials: 'same-origin',
       keepalive: true,
@@ -102,6 +103,10 @@
       // Never read what was typed: identify fields by name and type only.
       label = (el.name || el.id || tag) + ' field' + (el.type ? ' (' + el.type + ')' : '');
     }
+    if (!label && (el.children.length > 2 || el.textContent.length > 120)) {
+      // A large container (card, section, page background): name it instead of quoting all its text.
+      label = tag + (el.id ? '#' + el.id : el.classList.length ? '.' + el.classList[0] : '');
+    }
     return { tag: tag, label: clip(label || el.textContent || el.id || tag, 70) };
   }
 
@@ -133,6 +138,14 @@
     track('Form submitted', "submitted form '" + (form.id || form.getAttribute('action') || 'form') + "'", {
       metadata: { form_id: form.id || null, action: form.getAttribute('action'), method: form.method }
     });
+    if (form.hasAttribute('data-flush-first')) {
+      // Logging out ends the session, so the last events must be stored before the form is sent.
+      event.preventDefault();
+      trackExit();
+      exitTracked = true;
+      flush().then(function () { form.submit(); }, function () { form.submit(); });
+      return;
+    }
     flush(true);
   }, true);
 
@@ -180,15 +193,7 @@
 
   /* ---- leaving the page ---- */
   function secondsOnPage() { return Math.round((Date.now() - pageStart) / 1000); }
-  window.addEventListener('pagehide', function () {
-    leaving = true;
-    // Some browsers fire visibilitychange just before pagehide; drop that duplicate.
-    var lastQueued = queue[queue.length - 1];
-    if (lastQueued && lastQueued.event_name === 'Tab hidden' && Date.now() - hiddenAt < 300) {
-      queue.pop();
-      sentCount -= 1;
-      hiddenAt = null;
-    }
+  function trackExit() {
     var total = secondsOnPage();
     track('Page exited', 'left the page after ' + total + 's', {
       metadata: {
@@ -197,11 +202,24 @@
         max_scroll_percent: maxScroll
       }
     });
+  }
+  window.addEventListener('pagehide', function () {
+    leaving = true;
+    if (exitTracked) return;
+    // Some browsers fire visibilitychange just before pagehide; drop that duplicate.
+    var lastQueued = queue[queue.length - 1];
+    if (lastQueued && lastQueued.event_name === 'Tab hidden' && Date.now() - hiddenAt < 300) {
+      queue.pop();
+      sentCount -= 1;
+      hiddenAt = null;
+    }
+    trackExit();
     flush(true);
   });
 
   window.addEventListener('pageshow', function (event) {
     leaving = false;
+    exitTracked = false;
     if (event.persisted) { pageStart = Date.now(); hiddenTotal = 0; }  // restored from the back/forward cache
   });
 
@@ -211,7 +229,7 @@
     if (isNaN(date)) return;
     var full = el.dataset.format === 'full';
     el.textContent = date.toLocaleString(undefined, full
-      ? { day: 'numeric', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }
+      ? { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }
       : { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false });
     el.title = el.getAttribute('datetime') + ' (UTC)';
   });

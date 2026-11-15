@@ -196,10 +196,11 @@ input:not([type=radio]), select {
 .export-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .6rem; padding: .7rem 0; border-top: 1px solid var(--line); font-size: .9rem; }
 .table-wrap { overflow-x: auto; }
 .page-wide { max-width: 1400px; }
-.events { font-size: .84rem; min-width: 1080px; }
-.events th:nth-last-child(8), .events td:nth-last-child(8) { min-width: 210px; }  /* event context */
-.events th:nth-last-child(5), .events td:nth-last-child(5) { min-width: 300px; }  /* description */
-.events td { font-variant-numeric: tabular-nums; }
+.events { font-size: .83rem; }
+.events th, .events td { padding: .5rem .45rem; font-variant-numeric: tabular-nums; }
+.events th { white-space: nowrap; }
+.events .col-context { min-width: 190px; }
+.events .col-desc { min-width: 260px; }
 .meta summary { cursor: pointer; color: var(--teal); }
 .meta pre { margin: .3rem 0 0; font: .76rem/1.4 var(--mono); background: #f1ecdf; padding: .5rem; border-radius: 6px; max-width: 260px; overflow-x: auto; }
 .pager { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1rem; }

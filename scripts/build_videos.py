@@ -26,9 +26,9 @@ h1{font-size:74px;line-height:1.08;font-weight:600;max-width:980px}
 h2{font-size:50px;line-height:1.15;font-weight:600;max-width:1040px;margin-bottom:34px}
 p{font:28px/1.45 Arial,sans-serif;color:#c9d3da;max-width:1000px}
 .sub{font:30px/1.4 Arial,sans-serif;color:#c9d3da;margin-top:26px}
-.row{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:8px}
-.pill{font:600 26px Arial,sans-serif;background:#24343f;border:2px solid #3a4e5b;border-radius:99px;padding:14px 26px}
-.arrow{font:32px Arial;color:ACCENT}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:nowrap;margin-top:8px;white-space:nowrap}
+.pill{font:600 23px Arial,sans-serif;background:#24343f;border:2px solid #3a4e5b;border-radius:99px;padding:12px 20px}
+.arrow{font:26px Arial;color:ACCENT}
 .cols{display:flex;gap:32px;margin-top:6px}
 .box{flex:1;background:#1f2e38;border:2px solid #34485564;border-top:6px solid ACCENT;border-radius:14px;padding:26px 30px}
 .box h3{font-size:34px;margin-bottom:12px}

@@ -83,7 +83,7 @@
         <p class="eyebrow" id="result-label">Result</p>
         <p class="score" id="result-score"></p>
         <p id="result-text"></p>
-        <a class="btn" href="" id="quiz-retry">Try again</a>
+        <a class="btn" href="{{ request.path }}" id="quiz-retry">Try again</a>
       </div>
 
       {% if attempts %}

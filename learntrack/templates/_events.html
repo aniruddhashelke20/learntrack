@@ -34,8 +34,8 @@
 <div class="table-wrap">
   <table class="table events">
     <thead><tr>
-      <th>Time</th>{% if show_user %}<th>User</th>{% endif %}<th>Event context</th><th>Component</th>
-      <th>Event name</th><th>Description</th><th>Origin</th><th>IP address</th><th>Metadata</th>
+      <th>Time</th>{% if show_user %}<th>User</th>{% endif %}<th class="col-context">Event context</th><th>Component</th>
+      <th>Event name</th><th class="col-desc">Description</th><th>Origin</th><th>IP address</th><th>Metadata</th>
     </tr></thead>
     <tbody>
     {% for e in events %}
