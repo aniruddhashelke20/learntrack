@@ -1,0 +1,60 @@
+Time,Event context,Component,Event name,Description,Origin,IP address
+"15/11/26, 17:17:52",Activity log,Activity log,Page exited,User 5 left the page after 9s,web,127.0.0.1
+"15/11/26, 17:17:52",Activity log,Activity log,Activity log viewed,User 5 viewed their activity log (page 1),web,127.0.0.1
+"15/11/26, 17:17:52",Activity log,Activity log,Link clicked,User 5 clicked link 'Reset' (to /activity),web,127.0.0.1
+"15/11/26, 17:17:43",Activity log,Activity log,Page exited,User 5 left the page after 11s,web,127.0.0.1
+"15/11/26, 17:17:43",Activity log,Activity log,Activity log viewed,User 5 viewed their activity log (page 1),web,127.0.0.1
+"15/11/26, 17:17:43",Activity log,Activity log,Form submitted,User 5 submitted form 'event-filters',web,127.0.0.1
+"15/11/26, 17:17:43",Activity log,Activity log,Button clicked,User 5 clicked button 'Apply filters',web,127.0.0.1
+"15/11/26, 17:17:36",Activity log,Activity log,Page scrolled,User 5 scrolled to 50% of the page,web,127.0.0.1
+"15/11/26, 17:17:36",Activity log,Activity log,Page scrolled,User 5 scrolled to 25% of the page,web,127.0.0.1
+"15/11/26, 17:17:31",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Page exited,User 5 left the page after 25s,web,127.0.0.1
+"15/11/26, 17:17:31",Activity log,Activity log,Activity log viewed,User 5 viewed their activity log (page 1),web,127.0.0.1
+"15/11/26, 17:17:31",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Link clicked,User 5 clicked link 'My activity' (to /activity),web,127.0.0.1
+"15/11/26, 17:17:22",Quiz: Course quiz: Learning Analytics Foundations,System,Course activity completion updated,User 5 completed lesson 'la-quiz' by passing the quiz,web,127.0.0.1
+"15/11/26, 17:17:22",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz attempt submitted,User 5 submitted attempt 4 of quiz 'la-quiz' and scored 4/5 (80%),web,127.0.0.1
+"15/11/26, 17:17:22",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Button clicked,User 5 clicked button 'Submit answers',web,127.0.0.1
+"15/11/26, 17:17:21",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz answer selected,User 5 selected option 1 for question 'q5' in attempt 4 of quiz 'la-quiz',web,127.0.0.1
+"15/11/26, 17:17:20",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Page scrolled,User 5 scrolled to 75% of the page,web,127.0.0.1
+"15/11/26, 17:17:19",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz answer selected,User 5 selected option 2 for question 'q4' in attempt 4 of quiz 'la-quiz',web,127.0.0.1
+"15/11/26, 17:17:18",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz answer selected,User 5 changed the answer to option 3 for question 'q3' in attempt 4 of quiz 'la-quiz',web,127.0.0.1
+"15/11/26, 17:17:16",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz answer selected,User 5 selected option 1 for question 'q3' in attempt 4 of quiz 'la-quiz',web,127.0.0.1
+"15/11/26, 17:17:15",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz answer selected,User 5 selected option 2 for question 'q2' in attempt 4 of quiz 'la-quiz',web,127.0.0.1
+"15/11/26, 17:17:13",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Page scrolled,User 5 scrolled to 50% of the page,web,127.0.0.1
+"15/11/26, 17:17:13",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Page scrolled,User 5 scrolled to 25% of the page,web,127.0.0.1
+"15/11/26, 17:17:12",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz answer selected,User 5 selected option 1 for question 'q1' in attempt 4 of quiz 'la-quiz',web,127.0.0.1
+"15/11/26, 17:17:10",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Quiz attempt started,User 5 started attempt 4 of quiz 'la-quiz',web,127.0.0.1
+"15/11/26, 17:17:10",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Button clicked,User 5 clicked button 'Start attempt',web,127.0.0.1
+"15/11/26, 17:17:07",Lesson: Clickstream data explained,Text,Page exited,User 5 left the page after 32s,web,127.0.0.1
+"15/11/26, 17:17:06",Quiz: Course quiz: Learning Analytics Foundations,Quiz,Course module viewed,User 5 viewed the quiz lesson 'la-quiz' in course 'learning-analytics',web,127.0.0.1
+"15/11/26, 17:17:06",Lesson: Clickstream data explained,System,Course activity completion updated,User 5 marked lesson 'clickstream-explained' as complete,web,127.0.0.1
+"15/11/26, 17:17:06",Lesson: Clickstream data explained,Text,Button clicked,User 5 clicked button 'Mark lesson complete',web,127.0.0.1
+"15/11/26, 17:17:04",Lesson: Clickstream data explained,Text,Page scrolled,User 5 scrolled to 100% of the page,web,127.0.0.1
+"15/11/26, 17:17:02",Lesson: Clickstream data explained,Text,Knowledge check answered,User 5 answered knowledge check 'cs-check-1' correctly with option 3 ('Event name'),web,127.0.0.1
+"15/11/26, 17:17:01",Lesson: Clickstream data explained,Text,Page scrolled,User 5 scrolled to 75% of the page,web,127.0.0.1
+"15/11/26, 17:17:00",Lesson: Clickstream data explained,Text,Page scrolled,User 5 scrolled to 50% of the page,web,127.0.0.1
+"15/11/26, 17:16:59",Lesson: Clickstream data explained,Video,Video paused,User 5 paused video 'Clickstream in one minute' at 0:07,web,127.0.0.1
+"15/11/26, 17:16:54",Lesson: Clickstream data explained,Video,Video played,User 5 started playing video 'Clickstream in one minute' at 0:00,web,127.0.0.1
+"15/11/26, 17:16:51",Lesson: Clickstream data explained,Video,Video speed changed,User 5 changed the speed of video 'Clickstream in one minute' to 1.5x,web,127.0.0.1
+"15/11/26, 17:16:49",Lesson: Clickstream data explained,Video,Video seeked,User 5 skipped back in video 'Clickstream in one minute' from 0:05 to 0:00,web,127.0.0.1
+"15/11/26, 17:16:46",Lesson: Clickstream data explained,Video,Video paused,User 5 paused video 'Clickstream in one minute' at 0:05,web,127.0.0.1
+"15/11/26, 17:16:40",Lesson: Clickstream data explained,Video,Video played,User 5 started playing video 'Clickstream in one minute' at 0:00,web,127.0.0.1
+"15/11/26, 17:16:39",Lesson: Clickstream data explained,Text,Page scrolled,User 5 scrolled to 25% of the page,web,127.0.0.1
+"15/11/26, 17:16:34",Lesson: What is learning analytics?,Text,Page exited,User 5 left the page after 21s,web,127.0.0.1
+"15/11/26, 17:16:34",Lesson: Clickstream data explained,Text + Video,Course module viewed,User 5 viewed the text + video lesson 'clickstream-explained' in course 'learning-analytics',web,127.0.0.1
+"15/11/26, 17:16:34",Lesson: What is learning analytics?,Text,Link clicked,User 5 clicked link 'Next lesson' (to /course/learning-analytics/lesson/clickstream-explained),web,127.0.0.1
+"15/11/26, 17:16:31",Lesson: What is learning analytics?,System,Course activity completion updated,User 5 marked lesson 'what-is-la' as complete,web,127.0.0.1
+"15/11/26, 17:16:31",Lesson: What is learning analytics?,Text,Button clicked,User 5 clicked button 'Mark lesson complete',web,127.0.0.1
+"15/11/26, 17:16:30",Lesson: What is learning analytics?,Text,Page scrolled,User 5 scrolled to 100% of the page,web,127.0.0.1
+"15/11/26, 17:16:27",Lesson: What is learning analytics?,Text,Knowledge check answered,User 5 answered knowledge check 'la-check-1' correctly with option 2 ('Predictive'),web,127.0.0.1
+"15/11/26, 17:16:24",Lesson: What is learning analytics?,Text,Knowledge check answered,User 5 answered knowledge check 'la-check-1' incorrectly with option 1 ('Descriptive'),web,127.0.0.1
+"15/11/26, 17:16:21",Lesson: What is learning analytics?,Text,Section expanded,User 5 expanded the section 'Dig deeper: learning analytics vs educational data mining',web,127.0.0.1
+"15/11/26, 17:16:17",Lesson: What is learning analytics?,Text,Page scrolled,User 5 scrolled to 75% of the page,web,127.0.0.1
+"15/11/26, 17:16:17",Lesson: What is learning analytics?,Text,Page scrolled,User 5 scrolled to 50% of the page,web,127.0.0.1
+"15/11/26, 17:16:17",Lesson: What is learning analytics?,Text,Page scrolled,User 5 scrolled to 25% of the page,web,127.0.0.1
+"15/11/26, 17:16:13",Dashboard,System,Page exited,User 5 left the page after 5s,web,127.0.0.1
+"15/11/26, 17:16:13",Lesson: What is learning analytics?,Text,Course module viewed,User 5 viewed the text lesson 'what-is-la' in course 'learning-analytics',web,127.0.0.1
+"15/11/26, 17:16:13",Dashboard,System,Link clicked,User 5 clicked link 'Start course: Learning Analytics Foundations' (to /course/learning-analytics/lesson/what-is-la),web,127.0.0.1
+"15/11/26, 17:16:08",Dashboard,System,Dashboard viewed,User 5 viewed the dashboard,web,127.0.0.1
+"15/11/26, 17:16:08",LearnTrack,Auth,User logged in,User 5 logged in after registering,web,127.0.0.1
+"15/11/26, 17:16:08",LearnTrack,Auth,User registered,User 5 created the learner account 'priya',web,127.0.0.1
