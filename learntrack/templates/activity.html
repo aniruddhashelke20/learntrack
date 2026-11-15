@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}My activity{% endblock %}
+{% block context %}Activity log{% endblock %}
+{% block component %}Activity log{% endblock %}
+{% block page_class %}page-wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <p class="eyebrow">Your clickstream</p>
+    <h1>My activity</h1>
+    <p class="lead">Every row below is one action you took. This is exactly what is stored in the database about you.</p>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><strong>{{ summary['total'] or 0 }}</strong><span>events</span></div>
+  <div class="stat"><strong>{{ summary['views'] or 0 }}</strong><span>page views</span></div>
+  <div class="stat"><strong>{{ summary['clicks'] or 0 }}</strong><span>clicks</span></div>
+  <div class="stat"><strong>{{ summary['video'] or 0 }}</strong><span>video actions</span></div>
+  <div class="stat"><strong>{{ summary['quiz'] or 0 }}</strong><span>quiz events</span></div>
+  <div class="stat"><strong>{{ summary['sessions'] or 0 }}</strong><span>sessions</span></div>
+</div>
+
+<section class="card">
+  {% set scope = 'mine' %}{% set show_user = false %}
+  {% include "_events.html" %}
+</section>
+{% endblock %}

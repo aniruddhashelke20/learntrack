@@ -1,0 +1,67 @@
+{# Shared filter form + clickstream table. Expects: events, total, page, pages, components, names, scope, show_user #}
+<form class="filters" method="get" id="event-filters">
+  <label>Component
+    <select name="component">
+      <option value="">All</option>
+      {% for c in components %}<option {{ 'selected' if request.args.get('component') == c }}>{{ c }}</option>{% endfor %}
+    </select></label>
+  <label>Event name
+    <select name="event_name">
+      <option value="">All</option>
+      {% for n in names %}<option {{ 'selected' if request.args.get('event_name') == n }}>{{ n }}</option>{% endfor %}
+    </select></label>
+  {% if show_user %}
+  <label>User id <input name="user_id" inputmode="numeric" size="4" value="{{ request.args.get('user_id', '') }}"></label>
+  {% endif %}
+  <label>Search <input name="q" placeholder="text in description" value="{{ request.args.get('q', '') }}"></label>
+  <label>From <input type="date" name="from" value="{{ request.args.get('from', '') }}"></label>
+  <label>To <input type="date" name="to" value="{{ request.args.get('to', '') }}"></label>
+  <button class="btn btn-primary" type="submit">Apply filters</button>
+  <a class="btn btn-quiet" href="{{ request.path }}">Reset</a>
+</form>
+
+{% set qs = request.query_string.decode() %}
+<div class="export-row">
+  <span class="muted"><strong>{{ total }}</strong> matching events · page {{ page }} of {{ pages }}</span>
+  <span class="exports">
+    Export:
+    <a class="btn btn-quiet" href="{{ url_for('tracking.export_events') }}?scope={{ scope }}&format=csv&{{ qs }}" data-track-label="Export CSV (Moodle format)">CSV (Moodle format)</a>
+    <a class="btn btn-quiet" href="{{ url_for('tracking.export_events') }}?scope={{ scope }}&format=full&{{ qs }}" data-track-label="Export CSV (all columns)">CSV (all columns)</a>
+    <a class="btn btn-quiet" href="{{ url_for('tracking.export_events') }}?scope={{ scope }}&format=json&{{ qs }}" data-track-label="Export JSON">JSON</a>
+  </span>
+</div>
+
+<div class="table-wrap">
+  <table class="table events">
+    <thead><tr>
+      <th>Time</th>{% if show_user %}<th>User</th>{% endif %}<th>Event context</th><th>Component</th>
+      <th>Event name</th><th>Description</th><th>Origin</th><th>IP address</th><th>Metadata</th>
+    </tr></thead>
+    <tbody>
+    {% for e in events %}
+      <tr>
+        <td class="nowrap"><time class="js-time" data-format="full" datetime="{{ e.ts }}">{{ e.ts }}</time></td>
+        {% if show_user %}<td class="nowrap">{{ e.username or '—' }} <small class="muted">#{{ e.user_id or '' }}</small></td>{% endif %}
+        <td>{{ e.event_context }}</td>
+        <td><span class="tag tag-{{ e.component|lower|replace(' ', '-')|replace('+', '') }}">{{ e.component }}</span></td>
+        <td class="nowrap">{{ e.event_name }}</td>
+        <td>{{ e.description }}</td>
+        <td>{{ e.origin }}</td>
+        <td class="nowrap">{{ e.ip_address }}</td>
+        <td>{% if e.metadata %}<details class="meta" data-no-track><summary>view</summary><pre>{{ e.metadata|tojson(indent=1) }}</pre></details>{% endif %}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="9" class="muted">No events match these filters.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if pages > 1 %}
+<nav class="pager" aria-label="Pages">
+  {% set args = request.args.to_dict() %}
+  {% if page > 1 %}{% set _ = args.update(page=page - 1) %}<a class="btn" href="{{ url_for(request.endpoint, **args) }}">&larr; Newer</a>{% endif %}
+  <span class="muted">Page {{ page }} of {{ pages }}</span>
+  {% if page < pages %}{% set _ = args.update(page=page + 1) %}<a class="btn" href="{{ url_for(request.endpoint, **args) }}">Older &rarr;</a>{% endif %}
+</nav>
+{% endif %}
