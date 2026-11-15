@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Create account{% endblock %}
+{% block content %}
+<div class="auth auth-single">
+  <section class="card auth-card">
+    <h2>Create a learner account</h2>
+    <form method="post" id="register-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Full name <input name="full_name" value="{{ request.form.get('full_name', '') }}" required autofocus></label>
+      <label>Email <input name="email" type="email" value="{{ request.form.get('email', '') }}" required></label>
+      <label>Username <input name="username" value="{{ request.form.get('username', '') }}" autocomplete="username" required minlength="3" maxlength="30"></label>
+      <label>Password <input name="password" type="password" autocomplete="new-password" required minlength="6"></label>
+      <button class="btn btn-primary btn-block" type="submit">Create account</button>
+    </form>
+    <p class="muted">Already registered? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+  </section>
+</div>
+{% endblock %}

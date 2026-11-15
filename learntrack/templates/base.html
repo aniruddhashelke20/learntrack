@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>{% block title %}LearnTrack{% endblock %} · LearnTrack</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-context="{% block context %}LearnTrack{% endblock %}" data-component="{% block component %}System{% endblock %}">
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('courses.dashboard') }}" data-track-label="LearnTrack logo">
+      <span class="brand-mark" aria-hidden="true"></span>LearnTrack
+    </a>
+    {% if g.user %}
+    <nav class="nav" aria-label="Main">
+      <a href="{{ url_for('courses.dashboard') }}" {% if request.endpoint in ('courses.dashboard', 'courses.course', 'courses.lesson') %}aria-current="page"{% endif %}>Courses</a>
+      <a href="{{ url_for('tracking.activity') }}" {% if request.endpoint == 'tracking.activity' %}aria-current="page"{% endif %}>My activity</a>
+      {% if g.user['role'] == 'instructor' %}
+      <a href="{{ url_for('analytics.dashboard') }}" {% if request.endpoint == 'analytics.dashboard' %}aria-current="page"{% endif %}>Class analytics</a>
+      {% endif %}
+    </nav>
+    <div class="who">
+      <span class="who-name">{{ g.user['full_name'] }} <small>{{ g.user['role'] }}</small></span>
+      <form method="post" action="{{ url_for('auth.logout') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button class="btn btn-quiet" type="submit">Log out</button>
+      </form>
+    </div>
+    {% endif %}
+  </header>
+
+  <main class="page {% block page_class %}{% endblock %}">
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <p class="flash flash-{{ category }}" role="alert">{{ message }}</p>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">LearnTrack v{{ app_version }} · every action on this site is recorded as clickstream data and shown to you under “My activity”.</footer>
+
+  {% if g.user %}
+  <div class="live" id="live-tracker" data-no-track title="Events recorded on this page">
+    <span class="live-dot"></span><span id="live-count">0</span> events tracked on this page
+    <span class="live-last" id="live-last"></span>
+  </div>
+  <script src="{{ url_for('static', filename='js/tracker.js') }}"></script>
+  {% endif %}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

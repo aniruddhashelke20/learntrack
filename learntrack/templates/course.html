@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block context %}Course: {{ course.title }}{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('courses.dashboard') }}">Courses</a> / {{ course.title }}</nav>
+<div class="page-head">
+  <div>
+    <p class="eyebrow">{{ course.level }} course</p>
+    <h1>{{ course.title }}</h1>
+    <p class="lead">{{ course.summary }}</p>
+  </div>
+  <div class="stat-inline"><strong>{{ finished }}/{{ lessons|length }}</strong> complete</div>
+</div>
+
+<ol class="lesson-list">
+  {% for l in lessons %}
+  <li class="card lesson-row {{ 'is-done' if l.done }}">
+    <span class="lesson-num">{{ loop.index }}</span>
+    <div class="lesson-main">
+      <a class="lesson-title" href="{{ url_for('courses.lesson', course_id=course.id, lesson_id=l.id) }}">{{ l.title }}</a>
+      <span class="muted">{{ l.minutes }} min</span>
+    </div>
+    <span class="badge badge-{{ l.kind|lower|replace(' + ', '-') }}">{{ l.kind }}</span>
+    <span class="status">{{ '✓ Complete' if l.done else 'Not started' }}</span>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}

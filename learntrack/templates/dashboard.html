@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Courses{% endblock %}
+{% block context %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <p class="eyebrow">Welcome back</p>
+    <h1>{{ g.user['full_name'] }}</h1>
+  </div>
+  <div class="stat-inline"><strong>{{ done_count }}/{{ total }}</strong> lessons complete</div>
+</div>
+
+<div class="grid-2">
+  {% for c in courses %}
+  <article class="card course-card accent-{{ c.accent }}">
+    <p class="eyebrow">{{ c.level }} · {{ c.count }} lessons · about {{ c.minutes }} min</p>
+    <h2><a href="{{ url_for('courses.course', course_id=c.id) }}">{{ c.title }}</a></h2>
+    <p>{{ c.summary }}</p>
+    <div class="progress" role="progressbar" aria-valuenow="{{ c.percent }}" aria-valuemin="0" aria-valuemax="100"
+         aria-label="Progress in {{ c.title }}"><span style="width: {{ c.percent }}%"></span></div>
+    <div class="card-foot">
+      <span class="muted">{{ c.finished }} of {{ c.count }} complete ({{ c.percent }}%)</span>
+      <a class="btn btn-primary" href="{{ url_for('courses.lesson', course_id=c.id, lesson_id=c.next.id) }}"
+         data-track-label="{{ 'Continue' if c.finished else 'Start' }} course: {{ c.title }}">
+        {{ 'Review' if c.finished == c.count else ('Continue' if c.finished else 'Start course') }}</a>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<section class="card">
+  <div class="card-head">
+    <h2>Your latest activity</h2>
+    <a href="{{ url_for('tracking.activity') }}">See full clickstream &rarr;</a>
+  </div>
+  {% if recent %}
+  <ul class="recent">
+    {% for r in recent %}
+    <li><time class="js-time" datetime="{{ r['ts'] }}">{{ r['ts'] }}</time>
+      <strong>{{ r['event_name'] }}</strong> <span class="muted">{{ r['event_context'] }}</span></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">Nothing yet &ndash; open a course to start generating data.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<div class="auth">
+  <section class="auth-pitch">
+    <h1>Learn something.<br>See every click it took.</h1>
+    <p>LearnTrack is a small learning platform with text lessons, videos and quizzes. While you
+      study, it records your clickstream &ndash; page views, clicks, video actions and quiz attempts
+      &ndash; and lets you inspect and export it.</p>
+    <ul class="ticks">
+      <li>Two short courses with text, video and quizzes</li>
+      <li>30+ event types captured in a Moodle-style log</li>
+      <li>CSV and JSON export of your own data</li>
+    </ul>
+  </section>
+  <section class="card auth-card">
+    <h2>Log in</h2>
+    <form method="post" id="login-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Username <input name="username" autocomplete="username" required autofocus></label>
+      <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="btn btn-primary btn-block" type="submit">Log in</button>
+    </form>
+    <p class="muted">New here? <a href="{{ url_for('auth.register') }}">Create a learner account</a></p>
+    <div class="demo-accounts">
+      <strong>Demo accounts</strong>
+      <span>Learner: <code>learner1</code> / <code>learn123</code></span>
+      <span>Instructor: <code>instructor</code> / <code>teach123</code></span>
+    </div>
+  </section>
+</div>
+{% endblock %}
