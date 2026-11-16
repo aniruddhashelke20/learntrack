@@ -1,4 +1,5 @@
 # LearnTrack
+**aniruddha shelke · Roll No. 24b0748 · ET 617 Assignment 1**
 
 A standalone learning web app in which learners log in, study **text, video and quiz** lessons, and
 every action they take is recorded as **clickstream data**. Learners can inspect and export their own
@@ -72,7 +73,7 @@ exports.
 Requires Python 3.10 or newer. No database server, Node or internet connection is needed.
 
 ```bash
-git clone https://github.com/<your-username>/learntrack.git
+git clone https://github.com/aniruddhashelke20/learntrack.git
 cd learntrack
 
 python -m venv .venv
